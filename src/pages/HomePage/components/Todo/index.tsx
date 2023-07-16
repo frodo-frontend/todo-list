@@ -1,21 +1,26 @@
+import * as styles from "./styles.css";
+
 type Props = {
   text: string;
+  isChecked: boolean;
   handleClickCheck: () => void;
   handleClickDelete: () => void;
 };
 
 const Todo = (props: Props) => {
-  const { text, handleClickCheck, handleClickDelete } = props;
+  const { text, isChecked, handleClickCheck, handleClickDelete } = props;
 
   return (
-    <div>
-      <span>{text}</span>
-      <button type="button" onClick={handleClickCheck}>
-        ✅
-      </button>
-      <button type="button" onClick={handleClickDelete}>
-        🗑️
-      </button>
+    <div className={styles.container}>
+      <span className={isChecked ? styles.checked : ""}>{text}</span>
+      <div>
+        <button type="button" onClick={handleClickCheck}>
+          ✅
+        </button>
+        <button type="button" onClick={handleClickDelete}>
+          🗑️
+        </button>
+      </div>
     </div>
   );
 };

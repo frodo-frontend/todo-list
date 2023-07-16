@@ -8,13 +8,19 @@ type Todo = {
 };
 
 const useHomePage = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, text: "test1", checked: false },
+    { id: 2, text: "test2", checked: true },
+  ]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const inCompleteTodoCount = todos.filter(
+    (todo) => todo.checked === false
+  ).length;
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
-    if (inputRef.current === null) return;
+    if (inputRef.current === null || inputRef.current.value === "") return;
 
     const newTodo = {
       id: getUniqueKey(),
@@ -46,6 +52,7 @@ const useHomePage = () => {
   return {
     todos,
     inputRef,
+    inCompleteTodoCount,
     handleSubmit,
     handleClickCheck,
     handleClickDelete,
