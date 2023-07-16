@@ -10,15 +10,18 @@ export const container = style({
   borderRadius: "30px",
 });
 
-export const title = style({
-  margin: 0,
-});
+// style composition 연습을 위해 분리 -> 이런 코드들이 많아진다면, 코드 위치는 어디가 좋을까?
+const margin0 = style({ margin: 0 });
 
-export const subTitle = style({
-  margin: 0,
-  fontSize: "18px",
-  color: vars.color.gray_100,
-});
+export const title = style([margin0]);
+
+export const subTitle = style([
+  margin0,
+  {
+    fontSize: "18px",
+    color: vars.color.gray_100,
+  },
+]);
 
 export const description = style({
   marginBottom: "0",
