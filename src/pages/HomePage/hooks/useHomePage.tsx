@@ -26,18 +26,18 @@ const useHomePage = () => {
     inputRef.current.value = "";
   };
 
-  const handleClickCheck = (target: number) => () => {
+  const handleClickCheck = (targetId: number) => () => {
     const updatedTodos = todos.map((todo) => {
-      if (todo.id === target) return { ...todo, checked: !todo.checked };
+      if (todo.id === targetId) return { ...todo, checked: !todo.checked };
       return todo;
     });
 
     setTodos(updatedTodos);
   };
 
-  const handleClickDelete = (target: number) => () => {
+  const handleClickDelete = (targetId: number) => () => {
     if (confirm("정말 삭제하시겠습니까")) {
-      const updatedTodos = todos.filter((todo) => todo.id !== target);
+      const updatedTodos = todos.filter((todo) => todo.id !== targetId);
 
       setTodos(updatedTodos);
     }
